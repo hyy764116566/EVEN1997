@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyy.demo.mapper.AuthorityMapper">
+    <select id="findAuthority" parameterType="Integer" resultType="com.hyy.demo.common.dtos.AuthorityDto" >
+        select DISTINCT  tm.* from t_user_role tur
+            INNER JOIN t_role_menu trm ON trm.role_id = tur.role_id
+            LEFT JOIN t_menu tm on trm.menu_id = tm.id
+            where tur.user_id = #{id} and parentMenuId is null
+    </select>
+    <select id="findAuthorityChildren" parameterType="Integer" resultType="com.hyy.demo.common.dtos.AuthorityDto">
+        select * from  t_menu  where  parentMenuId = #{id}
+    </select>
+</mapper>
