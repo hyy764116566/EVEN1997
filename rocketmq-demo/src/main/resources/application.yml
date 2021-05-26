@@ -1,0 +1,6 @@
+server:
+  port: 8989
+rocketmq:
+  nameserver: 127.0.0.1:9876
+  producer:
+    group: demo-producer-group
